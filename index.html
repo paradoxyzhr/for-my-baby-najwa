@@ -15,6 +15,8 @@ body {
   overflow:hidden;
   color:white;
 }
+
+/* GIF الأول */
 #gif-main {
   width:260px;
   max-width:90%;
@@ -22,11 +24,53 @@ body {
   border-radius:20px;
   box-shadow:0 0 25px rgba(0,0,0,0.3);
 }
-h1 { font-size:2.5em; margin-top:20px; text-shadow:0 0 15px rgba(0,0,0,0.5);}
-#buttons { margin-top:40px; display:flex; gap:20px; justify-content:center; flex-wrap:wrap;}
-button { padding:15px 30px; font-size:1.3em; border:none; border-radius:12px; cursor:pointer; color:white; box-shadow:0 0 15px rgba(0,0,0,0.3); transition:.3s;}
+
+/* GIF يظهر بعد الضغط Yes */
+#gif-yes {
+  width:260px;
+  max-width:90%;
+  margin-top:30px;
+  border-radius:20px;
+  box-shadow:0 0 25px rgba(0,0,0,0.3);
+  display:none;
+}
+
+h1 {
+  font-size:2.5em;
+  margin-top:20px;
+  text-shadow:0 0 15px rgba(0,0,0,0.5);
+}
+
+#buttons {
+  margin-top:40px;
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+button {
+  padding:15px 30px;
+  font-size:1.3em;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  color:white;
+  box-shadow:0 0 15px rgba(0,0,0,0.3);
+  transition:.3s;
+}
+
 #yes { background:#ec4a76; }
 #no  { background:#ff869e; position:relative; }
+
+/* الرسالة تظهر بعد Yes */
+#popup {
+  display:none;
+  font-size:2em;
+  margin-top:30px;
+  color:#ffeb3b;
+  text-shadow:0 0 20px #ff79c6;
+}
 
 /* Floating hearts */
 .heart {
@@ -45,12 +89,17 @@ button { padding:15px 30px; font-size:1.3em; border:none; border-radius:12px; cu
 <body>
 
 <h1>Happy Valentine Babyyyyy Najwa 💗💋🫶🏻</h1>
+
 <img id="gif-main" src="https://media1.tenor.com/m/p_VEcmrBsLMAAAAd/manja.gif" alt="manja gif">
 
 <div id="buttons">
   <button id="yes">Yes ❤️</button>
   <button id="no">No 😢</button>
 </div>
+
+<img id="gif-yes" src="https://media1.tenor.com/m/A4Lvk69JMJkAAAAd/mochi-cat.gif" alt="mochi cat gif">
+
+<div id="popup">I LOVE YOU MOMMMMMMYYYY 🫶🏻</div>
 
 <!-- الموسيقى -->
 <audio id="music" loop>
@@ -60,14 +109,18 @@ button { padding:15px 30px; font-size:1.3em; border:none; border-radius:12px; cu
 <script>
 const yes = document.getElementById("yes");
 const no = document.getElementById("no");
+const gifYes = document.getElementById("gif-yes");
+const popup = document.getElementById("popup");
 const music = document.getElementById("music");
 
 // تشغيل الموسيقى بعد أول نقرة (مهم للهواتف)
 document.body.addEventListener("click",()=>{music.play().catch(()=>{});},{once:true});
 
-// زر Yes → يفتح الصفحة الثانية
+// زر Yes
 yes.addEventListener("click", ()=>{
-  window.location.href = "yespage.html";
+  gifYes.style.display="block";
+  popup.style.display="block";
+  yes.style.transform="scale(2)";
 });
 
 // زر No يهرب 10 مرات
@@ -81,7 +134,7 @@ no.addEventListener("click", ()=>{
   },100);
 });
 
-// قلوب متطايرة
+// قلوب متطايرة طوال الوقت
 function createHeart(){
   const h = document.createElement("div");
   h.className="heart";
