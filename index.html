@@ -25,16 +25,6 @@ body {
   box-shadow:0 0 25px rgba(0,0,0,0.3);
 }
 
-/* GIF يظهر بعد الضغط Yes */
-#gif-yes {
-  width:260px;
-  max-width:90%;
-  margin-top:30px;
-  border-radius:20px;
-  box-shadow:0 0 25px rgba(0,0,0,0.3);
-  display:none;
-}
-
 h1 {
   font-size:2.5em;
   margin-top:20px;
@@ -63,13 +53,39 @@ button {
 #yes { background:#ec4a76; }
 #no  { background:#ff869e; position:relative; }
 
-/* الرسالة تظهر بعد Yes */
+/* البلور */
+#blur {
+  display:none;
+  position:fixed;
+  top:0; left:0; right:0; bottom:0;
+  backdrop-filter:blur(8px);
+  background:rgba(0,0,0,0.3);
+  z-index:8;
+}
+
+/* النافذة الصغيرة */
 #popup {
   display:none;
-  font-size:2em;
-  margin-top:30px;
+  position:fixed;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(0,0,0,0.9);
+  padding:30px 40px;
+  border-radius:20px;
+  text-align:center;
+  z-index:9;
   color:#ffeb3b;
+  font-size:1.8em;
   text-shadow:0 0 20px #ff79c6;
+  box-shadow:0 0 50px rgba(255,0,150,0.6);
+}
+
+/* GIF داخل النافذة */
+#gif-yes {
+  width:200px;
+  max-width:80%;
+  border-radius:15px;
+  margin-top:20px;
 }
 
 /* Floating hearts */
@@ -97,9 +113,14 @@ button {
   <button id="no">No 😢</button>
 </div>
 
-<img id="gif-yes" src="https://media1.tenor.com/m/A4Lvk69JMJkAAAAd/mochi-cat.gif" alt="mochi cat gif">
+<!-- البلور -->
+<div id="blur"></div>
 
-<div id="popup">I LOVE YOU MOMMMMMMYYYY 🫶🏻</div>
+<!-- النافذة الصغيرة -->
+<div id="popup">
+  I LOVE YOU MOMMMMMMYYYY 🫶🏻
+  <img id="gif-yes" src="https://media1.tenor.com/m/A4Lvk69JMJkAAAAd/mochi-cat.gif" alt="mochi cat gif">
+</div>
 
 <!-- الموسيقى -->
 <audio id="music" loop>
@@ -109,16 +130,16 @@ button {
 <script>
 const yes = document.getElementById("yes");
 const no = document.getElementById("no");
-const gifYes = document.getElementById("gif-yes");
 const popup = document.getElementById("popup");
+const blur = document.getElementById("blur");
 const music = document.getElementById("music");
 
 // تشغيل الموسيقى بعد أول نقرة (مهم للهواتف)
 document.body.addEventListener("click",()=>{music.play().catch(()=>{});},{once:true});
 
-// زر Yes
+// زر Yes → يظهر النافذة والبلور
 yes.addEventListener("click", ()=>{
-  gifYes.style.display="block";
+  blur.style.display="block";
   popup.style.display="block";
   yes.style.transform="scale(2)";
 });
