@@ -52,9 +52,18 @@ button { padding:15px 30px; font-size:1.3em; border:none; border-radius:12px; cu
   <button id="no">No 😢</button>
 </div>
 
+<!-- الموسيقى -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1c2c7c3a70.mp3?filename=love-me-not-12618.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 const yes = document.getElementById("yes");
 const no = document.getElementById("no");
+const music = document.getElementById("music");
+
+// تشغيل الموسيقى بعد أول نقرة (مهم للهواتف)
+document.body.addEventListener("click",()=>{music.play().catch(()=>{});},{once:true});
 
 // زر Yes → يفتح الصفحة الثانية
 yes.addEventListener("click", ()=>{
