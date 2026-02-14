@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I LOVE YOU MOMMMMMMYYYY 🫶🏻</title>
+
+<style>
+body {
+  margin:0;
+  padding:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  height:100vh;
+  background: linear-gradient(135deg,#ff4d6d,#ff8fab,#ffc2d1);
+  color:white;
+  text-align:center;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-size:2.5em;
+  margin-bottom:30px;
+  text-shadow:0 0 20px #ffeb3b;
+}
+
+/* GIF */
+#gif-yes {
+  width:260px;
+  max-width:90%;
+  border-radius:20px;
+  box-shadow:0 0 25px rgba(0,0,0,0.3);
+}
+
+/* Floating hearts */
+.heart {
+  position:fixed;
+  font-size:20px;
+  animation:float 5s linear forwards;
+  pointer-events:none;
+}
+
+@keyframes float{
+  0%{transform:translateY(100vh);}
+  100%{transform:translateY(-10vh);}
+}
+</style>
+</head>
+<body>
+
+<h1>I LOVE YOU MOMMMMMMYYYY 🫶🏻</h1>
+<img id="gif-yes" src="https://media1.tenor.com/m/A4Lvk69JMJkAAAAd/mochi-cat.gif" alt="mochi cat gif">
+
+<script>
+// قلوب متطايرة
+function createHeart(){
+  const h = document.createElement("div");
+  h.className="heart";
+  h.innerText="💖";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration = (3+Math.random()*4)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+}
+setInterval(createHeart,400);
+</script>
+
+</body>
+</html>
