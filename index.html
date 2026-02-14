@@ -17,8 +17,8 @@ body {
 
 /* GIF الأول */
 #gif-main {
-  width:50vw;
-  max-width:260px;
+  width:60%;
+  max-width:300px;
   margin-top:5vh;
   border-radius:20px;
   box-shadow:0 0 25px rgba(0,0,0,0.3);
@@ -41,7 +41,7 @@ h1 {
 }
 
 button {
-  padding:3vw 6vw;
+  padding:4vw 8vw;
   font-size:4vw;
   border:none;
   border-radius:12px;
@@ -71,21 +71,21 @@ button {
   top:50%; left:50%;
   transform:translate(-50%,-50%) scale(0);
   background:rgba(0,0,0,0.9);
-  padding:8vw;
+  padding:10vw;
   border-radius:8vw;
   font-size:5vw;
   color:#ffeb3b;
   z-index:9;
-  text-shadow:0 0 10px #ff79c6;
-  box-shadow:0 0 20px rgba(255,0,150,0.6);
+  text-shadow:0 0 15px #ff79c6;
+  box-shadow:0 0 25px rgba(255,0,150,0.6);
   text-align:center;
   transition: transform 0.5s ease-out;
 }
 
 /* GIF داخل النافذة */
 #gif-yes {
-  width:40vw;
-  max-width:220px;
+  width:50%;
+  max-width:250px;
   margin-top:5vw;
   border-radius:5vw;
 }
@@ -93,7 +93,7 @@ button {
 /* Floating hearts */
 .heart {
   position:fixed;
-  font-size:5vw;
+  font-size:6vw;
   animation:float 5s linear forwards;
   pointer-events:none;
 }
@@ -150,7 +150,7 @@ yes.addEventListener("click", ()=>{
     const h = document.createElement("div");
     h.className="heart";
     h.innerText="💖";
-    h.style.left = (50 + (Math.random()-0.5)*60) + "vw";
+    h.style.left = (50 + (Math.random()-0.5)*50) + "vw";
     h.style.top = (50 + (Math.random()-0.5)*30) + "vh";
     h.style.animationDuration = (2+Math.random()*3) + "s";
     document.body.appendChild(h);
