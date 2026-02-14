@@ -17,32 +17,32 @@ body {
 
 /* GIF الأول */
 #gif-main {
-  width:260px;
-  max-width:90%;
-  margin-top:30px;
+  width:50vw;
+  max-width:260px;
+  margin-top:5vh;
   border-radius:20px;
-  box-shadow: 0 0 25px rgba(0,0,0,0.3);
+  box-shadow:0 0 25px rgba(0,0,0,0.3);
 }
 
 /* Title */
 h1 {
-  font-size:2.5em;
-  margin-top:20px;
+  font-size:6vw;
+  margin-top:2vh;
   text-shadow:0 0 15px rgba(0,0,0,0.5);
 }
 
 /* Buttons */
 #buttons {
-  margin-top:40px;
+  margin-top:5vh;
   display:flex;
-  gap:20px;
+  gap:5vw;
   justify-content:center;
   flex-wrap:wrap;
 }
 
 button {
-  padding:15px 30px;
-  font-size:1.3em;
+  padding:3vw 6vw;
+  font-size:4vw;
   border:none;
   border-radius:12px;
   cursor:pointer;
@@ -54,7 +54,7 @@ button {
 #yes { background:#ec4a76; }
 #no  { background:#ff869e; position:relative; }
 
-/* Blur background عند الضغط Yes */
+/* Blur */
 #blur {
   display:none;
   position:fixed;
@@ -64,36 +64,36 @@ button {
   z-index:8;
 }
 
-/* Popup أمام البلور مع تأثير دخول */
+/* Popup أمام البلور */
 #popup {
   display:none;
   position:fixed;
   top:50%; left:50%;
   transform:translate(-50%,-50%) scale(0);
   background:rgba(0,0,0,0.9);
-  padding:40px 50px;
-  border-radius:20px;
-  font-size:2em;
+  padding:8vw;
+  border-radius:8vw;
+  font-size:5vw;
   color:#ffeb3b;
-  z-index:9; /* أعلى من البلور */
-  text-shadow:0 0 20px #ff79c6;
-  box-shadow:0 0 50px rgba(255,0,150,0.6);
+  z-index:9;
+  text-shadow:0 0 10px #ff79c6;
+  box-shadow:0 0 20px rgba(255,0,150,0.6);
   text-align:center;
   transition: transform 0.5s ease-out;
 }
 
 /* GIF داخل النافذة */
 #gif-yes {
-  width:220px;
-  max-width:80%;
-  margin-top:20px;
-  border-radius:15px;
+  width:40vw;
+  max-width:220px;
+  margin-top:5vw;
+  border-radius:5vw;
 }
 
 /* Floating hearts */
 .heart {
   position:fixed;
-  font-size:20px;
+  font-size:5vw;
   animation:float 5s linear forwards;
   pointer-events:none;
 }
@@ -121,7 +121,7 @@ button {
 <div id="popup">
   I LOVE YOU MOMMMMMMYYYY 🫶🏻
   <br>
-  <img src="https://media1.tenor.com/m/A4Lvk69JMJkAAAAd/mochi-cat.gif" alt="mochi cat gif">
+  <img id="gif-yes" src="https://media1.tenor.com/m/A4Lvk69JMJkAAAAd/mochi-cat.gif" alt="mochi cat gif">
 </div>
 
 <!-- Music -->
@@ -136,10 +136,10 @@ const popup = document.getElementById("popup");
 const blur = document.getElementById("blur");
 const music = document.getElementById("music");
 
-// تشغيل الموسيقى عند أول نقرة
+// تشغيل الموسيقى عند أول نقرة على الهاتف
 document.body.addEventListener("click",()=>{music.play().catch(()=>{});},{once:true});
 
-// زر Yes → يظهر overlay + popup مع تأثير دخول
+// زر Yes → يظهر overlay + popup مع تكبير + قلوب من داخل النافذة
 yes.addEventListener("click", ()=>{
   blur.style.display="block";
   popup.style.display="block";
@@ -150,7 +150,7 @@ yes.addEventListener("click", ()=>{
     const h = document.createElement("div");
     h.className="heart";
     h.innerText="💖";
-    h.style.left = (50 + (Math.random()-0.5)*60) + "vw"; // حول منتصف الشاشة
+    h.style.left = (50 + (Math.random()-0.5)*60) + "vw";
     h.style.top = (50 + (Math.random()-0.5)*30) + "vh";
     h.style.animationDuration = (2+Math.random()*3) + "s";
     document.body.appendChild(h);
