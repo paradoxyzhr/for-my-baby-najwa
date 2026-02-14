@@ -4,151 +4,198 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Valentine Babyyyyy 💗💋🫶🏻</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
-html, body{height:100%;overflow:hidden;background: linear-gradient(135deg, #f43f5e, #ec4899, #f9a8d4);display:flex;justify-content:center;align-items:center;flex-direction:column;}
-h1{position:absolute;top:5%;font-size:2.5em;color:white;text-shadow:0 0 15px #f43f5e;text-align:center;width:100%;}
-#container{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:40vh;}
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+body{
+  height:100vh;
+  overflow:hidden;
+  background: linear-gradient(135deg,#ff4d6d,#ff8fab,#ffc2d1);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+/* العنوان */
+h1{
+  position:absolute;
+  top:6%;
+  color:white;
+  font-size:clamp(22px,5vw,36px);
+  text-shadow:0 0 15px rgba(0,0,0,.4);
+  padding:0 10px;
+}
+
+/* الأزرار */
+#buttons{
+  display:flex;
+  gap:18px;
+  margin-top:40vh;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
 button{
-  padding:12px 25px;
-  font-size:1.3em;
+  padding:12px 26px;
+  font-size:18px;
   border:none;
-  border-radius:15px;
+  border-radius:14px;
   cursor:pointer;
-  transition:all 0.3s ease;
-  box-shadow:0 0 15px rgba(0,0,0,0.3);
+  color:white;
+  box-shadow:0 6px 18px rgba(0,0,0,.25);
+  transition:.25s;
 }
-#yes{background:#f43f5e;color:white;}
-#no{background:#ec4899;color:white;position:relative;}
-.blurBG{
+
+#yes{ background:#ff4d6d; }
+#no{
+  background:#ff8fab;
   position:fixed;
-  top:0;left:0;
-  width:100%;
-  height:100%;
+}
+
+/* البلور */
+#blur{
+  position:fixed;
+  inset:0;
   backdrop-filter:blur(8px);
-  background:rgba(0,0,0,0.3);
+  background:rgba(0,0,0,.35);
   display:none;
-  z-index:998;
+  z-index:9;
 }
-.heart{
-  position:absolute;
-  font-size:25px;
-  animation: float 5s linear infinite;
-  color:#ff79c6;
-}
-@keyframes float{
-  0%{transform:translateY(100vh);}
-  100%{transform:translateY(-10vh);}
-}
-.firework{
-  position:absolute;
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  box-shadow:0 0 10px #ff79c6,0 0 20px #ff79c6,0 0 30px #ff79c6;
-  animation: burst 1s ease-out forwards;
-}
-@keyframes burst{
-  0%{transform:scale(0);opacity:1;}
-  100%{transform:scale(3);opacity:0;}
-}
-#lovePopup{
+
+/* النافذة */
+#popup{
   display:none;
   position:fixed;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  background:rgba(0,0,0,0.85);
-  padding:50px 60px;
-  border-radius:20px;
-  font-size:2.5em;
-  color:#ffeb3b;
-  text-align:center;
-  z-index:999;
-  box-shadow:0 0 50px #ff79c6,0 0 100px #f43f5e;
-  text-shadow:0 0 20px #ff79c6,0 0 40px #f43f5e;
+  background:linear-gradient(135deg,#ff4d6d,#ff8fab);
+  color:white;
+  padding:30px 28px;
+  border-radius:22px;
+  font-size:22px;
+  z-index:10;
+  box-shadow:0 0 40px rgba(255,0,100,.6);
+  animation:pop .4s ease;
 }
-audio{
-  display:none;
+
+@keyframes pop{
+  from{transform:translate(-50%,-50%) scale(.5);opacity:0}
+  to{transform:translate(-50%,-50%) scale(1);opacity:1}
 }
+
+/* القلوب */
+.heart{
+  position:fixed;
+  font-size:20px;
+  animation:float 5s linear forwards;
+  pointer-events:none;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh)}
+  to{transform:translateY(-10vh)}
+}
+
+/* الألعاب النارية */
+.fire{
+  position:fixed;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  animation:boom 1s forwards;
+}
+
+@keyframes boom{
+  from{transform:scale(0);opacity:1}
+  to{transform:scale(3);opacity:0}
+}
+
+audio{display:none;}
 </style>
 </head>
+
 <body>
 
 <h1>Happy Valentine Babyyyyy 💗💋🫶🏻</h1>
 
-<div id="container">
+<div id="buttons">
   <button id="yes">Yes ❤️</button>
   <button id="no">No 😢</button>
 </div>
 
-<div class="blurBG" id="blurBG"></div>
-<div id="lovePopup">I LOVE YOU MOMMMMMMYYYY 🫶🏻</div>
+<div id="blur"></div>
+<div id="popup">I love you mommmmyyy 🫶🏻</div>
 
-<!-- Music -->
-<audio id="bgMusic" loop>
-  <source src="SpotiDownloader.com - Love Me Not - Ravyn Lenae.mp3" type="audio/mpeg">
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1c2c7c3a70.mp3?filename=love-me-not-12618.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-// Flying hearts
-function createHeart(){
-  const heart=document.createElement('div');
-  heart.className='heart';
-  heart.style.left=Math.random()*100+'vw';
-  heart.style.fontSize=15+Math.random()*30+'px';
-  heart.innerText='💖';
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),5000);
-}
-setInterval(createHeart,400);
+const yes=document.getElementById("yes");
+const no=document.getElementById("no");
+const popup=document.getElementById("popup");
+const blur=document.getElementById("blur");
+const music=document.getElementById("music");
 
-// Fireworks
+/* تشغيل الموسيقى بعد أول لمس (مهم للهاتف) */
+document.body.addEventListener("click",()=>{
+  music.play().catch(()=>{});
+},{once:true});
+
+/* قلوب */
+function heart(){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💖";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(16+Math.random()*24)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),5000);
+}
+setInterval(heart,400);
+
+/* ألعاب نارية */
 function firework(){
   for(let i=0;i<25;i++){
-    const fw=document.createElement('div');
-    fw.className='firework';
-    fw.style.top=Math.random()*80+'vh';
-    fw.style.left=Math.random()*80+'vw';
-    fw.style.background=`hsl(${Math.random()*360},100%,70%)`;
-    document.body.appendChild(fw);
-    setTimeout(()=>fw.remove(),1000);
+    const f=document.createElement("div");
+    f.className="fire";
+    f.style.top=Math.random()*90+"vh";
+    f.style.left=Math.random()*90+"vw";
+    f.style.background=`hsl(${Math.random()*360},100%,60%)`;
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1000);
   }
 }
 
-// Buttons
-const yes=document.getElementById('yes');
-const no=document.getElementById('no');
-const lovePopup=document.getElementById('lovePopup');
-const blurBG=document.getElementById('blurBG');
-const music=document.getElementById('bgMusic');
-
-yes.addEventListener('click',()=>{
-  yes.style.transform='scale(5)';
-  blurBG.style.display='block';
-  lovePopup.style.display='block';
+/* زر YES */
+yes.onclick=()=>{
+  yes.style.transform="scale(5)";
+  blur.style.display="block";
+  popup.style.display="block";
   firework();
-  setInterval(firework,400);
-  music.play().catch(()=>{}); // يحاول التشغيل حتى على الهاتف
-});
+  setInterval(firework,500);
+};
 
-// No button يهرب 10 مرات عند كل ضغط
-no.addEventListener('click',()=>{
+/* زر NO يهرب 10 مرات */
+no.onclick=()=>{
   let count=0;
-  const moveInterval=setInterval(()=>{
-    const x=Math.random()*window.innerWidth*0.85;
-    const y=Math.random()*window.innerHeight*0.85;
-    no.style.left=x+'px';
-    no.style.top=y+'px';
+  const move=setInterval(()=>{
+    no.style.left=Math.random()*80+"vw";
+    no.style.top=Math.random()*80+"vh";
     count++;
-    if(count>=10) clearInterval(moveInterval);
+    if(count>=10) clearInterval(move);
   },100);
-});
-
-// لتشغيل الموسيقى على بعض الأجهزة بعد أول تفاعل
-document.body.addEventListener('click',()=>{music.play().catch(()=>{});},{once:true});
+};
 </script>
+
 </body>
 </html>
