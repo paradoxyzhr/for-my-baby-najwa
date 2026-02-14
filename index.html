@@ -4,12 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Valentine Babyyyyy Najwa 💗💋🫶🏻</title>
-
 <style>
 body {
   margin:0;
   padding:0;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
   font-family: Arial, sans-serif;
   text-align:center;
   overflow:hidden;
@@ -20,17 +19,19 @@ body {
 #gif-main {
   width:260px;
   max-width:90%;
-  margin-top:50px;
+  margin-top:30px;
   border-radius:20px;
-  box-shadow:0 0 25px rgba(0,0,0,0.3);
+  box-shadow: 0 0 25px rgba(0,0,0,0.3);
 }
 
+/* Title */
 h1 {
   font-size:2.5em;
   margin-top:20px;
   text-shadow:0 0 15px rgba(0,0,0,0.5);
 }
 
+/* Buttons */
 #buttons {
   margin-top:40px;
   display:flex;
@@ -47,13 +48,13 @@ button {
   cursor:pointer;
   color:white;
   box-shadow:0 0 15px rgba(0,0,0,0.3);
-  transition:.3s;
+  transition:.3s ease;
 }
 
 #yes { background:#ec4a76; }
 #no  { background:#ff869e; position:relative; }
 
-/* البلور */
+/* Blur background عند الضغط Yes */
 #blur {
   display:none;
   position:fixed;
@@ -63,29 +64,30 @@ button {
   z-index:8;
 }
 
-/* النافذة الصغيرة */
+/* Popup أمام البلور مع تأثير دخول */
 #popup {
   display:none;
   position:fixed;
   top:50%; left:50%;
-  transform:translate(-50%,-50%);
+  transform:translate(-50%,-50%) scale(0);
   background:rgba(0,0,0,0.9);
-  padding:30px 40px;
+  padding:40px 50px;
   border-radius:20px;
-  text-align:center;
-  z-index:9;
+  font-size:2em;
   color:#ffeb3b;
-  font-size:1.8em;
+  z-index:9; /* أعلى من البلور */
   text-shadow:0 0 20px #ff79c6;
   box-shadow:0 0 50px rgba(255,0,150,0.6);
+  text-align:center;
+  transition: transform 0.5s ease-out;
 }
 
 /* GIF داخل النافذة */
 #gif-yes {
-  width:200px;
+  width:220px;
   max-width:80%;
-  border-radius:15px;
   margin-top:20px;
+  border-radius:15px;
 }
 
 /* Floating hearts */
@@ -105,24 +107,24 @@ button {
 <body>
 
 <h1>Happy Valentine Babyyyyy Najwa 💗💋🫶🏻</h1>
-
-<img id="gif-main" src="https://media1.tenor.com/m/p_VEcmrBsLMAAAAd/manja.gif" alt="manja gif">
+<img id="gif-main" src="https://media1.tenor.com/m/p_VEcmrBsLMAAAAd/manja.gif" alt="teddy gif">
 
 <div id="buttons">
   <button id="yes">Yes ❤️</button>
   <button id="no">No 😢</button>
 </div>
 
-<!-- البلور -->
+<!-- Blur -->
 <div id="blur"></div>
 
-<!-- النافذة الصغيرة -->
+<!-- Popup أمام البلور -->
 <div id="popup">
   I LOVE YOU MOMMMMMMYYYY 🫶🏻
-  <img id="gif-yes" src="https://media1.tenor.com/m/A4Lvk69JMJkAAAAd/mochi-cat.gif" alt="mochi cat gif">
+  <br>
+  <img src="https://media1.tenor.com/m/A4Lvk69JMJkAAAAd/mochi-cat.gif" alt="mochi cat gif">
 </div>
 
-<!-- الموسيقى -->
+<!-- Music -->
 <audio id="music" loop>
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1c2c7c3a70.mp3?filename=love-me-not-12618.mp3" type="audio/mpeg">
 </audio>
@@ -134,22 +136,36 @@ const popup = document.getElementById("popup");
 const blur = document.getElementById("blur");
 const music = document.getElementById("music");
 
-// تشغيل الموسيقى بعد أول نقرة (مهم للهواتف)
+// تشغيل الموسيقى عند أول نقرة
 document.body.addEventListener("click",()=>{music.play().catch(()=>{});},{once:true});
 
-// زر Yes → يظهر النافذة والبلور
+// زر Yes → يظهر overlay + popup مع تأثير دخول
 yes.addEventListener("click", ()=>{
   blur.style.display="block";
   popup.style.display="block";
+  popup.style.transform = "translate(-50%,-50%) scale(1)";
+
+  // انبثاق قلوب داخل النافذة
+  for(let i=0;i<15;i++){
+    const h = document.createElement("div");
+    h.className="heart";
+    h.innerText="💖";
+    h.style.left = (50 + (Math.random()-0.5)*60) + "vw"; // حول منتصف الشاشة
+    h.style.top = (50 + (Math.random()-0.5)*30) + "vh";
+    h.style.animationDuration = (2+Math.random()*3) + "s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  }
+
   yes.style.transform="scale(2)";
 });
 
 // زر No يهرب 10 مرات
 no.addEventListener("click", ()=>{
-  let count=0;
-  const move=setInterval(()=>{
-    no.style.left=Math.random()*80+"vw";
-    no.style.top=Math.random()*80+"vh";
+  let count = 0;
+  const move = setInterval(()=>{
+    no.style.left = Math.random()*80+"vw";
+    no.style.top = Math.random()*80+"vh";
     count++;
     if(count>=10) clearInterval(move);
   },100);
@@ -160,8 +176,8 @@ function createHeart(){
   const h = document.createElement("div");
   h.className="heart";
   h.innerText="💖";
-  h.style.left=Math.random()*100+"vw";
-  h.style.animationDuration=(3+Math.random()*4)+"s";
+  h.style.left = Math.random()*100 + "vw";
+  h.style.animationDuration = (3 + Math.random()*4) + "s";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),7000);
 }
