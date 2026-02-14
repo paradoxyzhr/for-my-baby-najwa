@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Happy Valentine Babyyyyy Najwa 💗💋🫶🏻</title>
 <style>
 html, body {
@@ -11,6 +11,7 @@ html, body {
   width:100%;
   height:100%;
   overflow:hidden;
+  touch-action:none; /* منع السحب */
 }
 
 body {
@@ -24,31 +25,31 @@ body {
   align-items:center;
 }
 
-/* Title */
+/* العنوان */
 h1 {
-  font-size:6vw;
-  margin-top:5vh;
-  margin-bottom:3vh;
+  font-size:7vw;
+  margin-top:3vh;
   text-shadow:0 0 15px rgba(0,0,0,0.5);
 }
 
-/* GIF الأول */
+/* GIF الرئيسي */
 #gif-main {
   width:60vw;
-  max-width:320px;
+  max-width:350px;
   height:auto;
   border-radius:20px;
   box-shadow:0 0 25px rgba(0,0,0,0.3);
+  margin-top:3vh;
 }
 
-/* Buttons */
+/* الأزرار */
 #buttons {
   margin-top:5vh;
   display:flex;
   gap:5vw;
   justify-content:center;
-  width:100%;
   flex-wrap:wrap;
+  width:100%;
 }
 
 button {
@@ -65,7 +66,7 @@ button {
 #yes { background:#ec4a76; }
 #no  { background:#ff869e; position:relative; }
 
-/* Blur */
+/* البلور */
 #blur {
   display:none;
   position:fixed;
@@ -96,7 +97,7 @@ button {
   transition: transform 0.5s ease-out;
 }
 
-/* GIF داخل النافذة */
+/* GIF داخل popup */
 #gif-yes {
   width:50%;
   max-width:250px;
@@ -129,17 +130,14 @@ button {
   <button id="no">No 😢</button>
 </div>
 
-<!-- Blur -->
 <div id="blur"></div>
 
-<!-- Popup أمام البلور -->
 <div id="popup">
   I LOVE YOU MOMMMMMMYYYY 🫶🏻
   <br>
   <img id="gif-yes" src="https://media1.tenor.com/m/A4Lvk69JMJkAAAAd/mochi-cat.gif" alt="mochi cat gif">
 </div>
 
-<!-- Music -->
 <audio id="music" loop>
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1c2c7c3a70.mp3?filename=love-me-not-12618.mp3" type="audio/mpeg">
 </audio>
@@ -151,16 +149,15 @@ const popup = document.getElementById("popup");
 const blur = document.getElementById("blur");
 const music = document.getElementById("music");
 
-// تشغيل الموسيقى عند أول نقرة على الهاتف
+// تشغيل الموسيقى عند أول نقرة
 document.body.addEventListener("click",()=>{music.play().catch(()=>{});},{once:true});
 
-// زر Yes → يظهر overlay + popup مع تكبير + قلوب من داخل النافذة
+// زر Yes → يظهر البلور + popup + قلوب
 yes.addEventListener("click", ()=>{
   blur.style.display="block";
   popup.style.display="block";
-  popup.style.transform = "translate(-50%,-50%) scale(1)";
+  popup.style.transform="translate(-50%,-50%) scale(1)";
 
-  // انبثاق قلوب داخل النافذة
   for(let i=0;i<15;i++){
     const h = document.createElement("div");
     h.className="heart";
@@ -177,7 +174,7 @@ yes.addEventListener("click", ()=>{
 
 // زر No يهرب 10 مرات
 no.addEventListener("click", ()=>{
-  let count = 0;
+  let count=0;
   const move = setInterval(()=>{
     no.style.left = Math.random()*80+"vw";
     no.style.top = Math.random()*80+"vh";
@@ -186,13 +183,13 @@ no.addEventListener("click", ()=>{
   },100);
 });
 
-// قلوب متطايرة طوال الوقت
+// قلوب متطايرة دائماً
 function createHeart(){
-  const h = document.createElement("div");
+  const h=document.createElement("div");
   h.className="heart";
   h.innerText="💖";
-  h.style.left = Math.random()*100 + "vw";
-  h.style.animationDuration = (3 + Math.random()*4) + "s";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(3+Math.random()*4)+"s";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),7000);
 }
